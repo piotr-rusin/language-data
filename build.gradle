@@ -16,6 +16,9 @@ repositories {
 
 test {
     useJUnitPlatform()
+    moduleOptions {
+        runOnClasspath = true
+    }
 }
 
 dependencies {
