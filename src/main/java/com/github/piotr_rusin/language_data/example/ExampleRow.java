@@ -1,11 +1,14 @@
 package com.github.piotr_rusin.language_data.example;
 
 import com.github.piotr_rusin.language_data.DataRow;
+import com.github.piotr_rusin.language_data.language.LanguageRow;
 import com.opencsv.bean.CsvBindByName;
 
 public class ExampleRow extends DataRow {
     @CsvBindByName(column="Language_ID")
     private String languageId;
+    private LanguageRow languageData;
+
     @CsvBindByName(column="Primary_Text")
     private String primaryText;
     @CsvBindByName(column="Analyzed_Word")
@@ -45,5 +48,9 @@ public class ExampleRow extends DataRow {
 
     public String getComment() {
         return comment;
+    }
+
+    public LanguageRow getLanguageData() {
+        return languageData;
     }
 }

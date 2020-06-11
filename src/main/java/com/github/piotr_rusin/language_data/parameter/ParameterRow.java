@@ -1,12 +1,15 @@
 package com.github.piotr_rusin.language_data.parameter;
 
 import com.github.piotr_rusin.language_data.DataRow;
+import com.github.piotr_rusin.language_data.contributor.ContributorRow;
 import com.opencsv.bean.CsvBindByName;
 
 public class ParameterRow extends DataRow {
 
     @CsvBindByName(column="Contributor_ID")
     private String contributorId;
+    private ContributorRow contributorData;
+
     @CsvBindByName(column="Name")
     private String name;
     @CsvBindByName(column="Description")
@@ -34,5 +37,9 @@ public class ParameterRow extends DataRow {
 
     public String getArea() {
         return area;
+    }
+
+    public ContributorRow getContributorData() {
+        return contributorData;
     }
 }
