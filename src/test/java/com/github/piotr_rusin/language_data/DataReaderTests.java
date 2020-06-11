@@ -7,28 +7,52 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 
 public class DataReaderTests {
 
-    FileReader fileReader;
-
-    @BeforeEach
-    public void prepareFileReader() throws FileNotFoundException {
-        fileReader = new FileReader("src/test/resources/csv/test.csv");
+    protected Reader prepareFileReader(String fileName) throws FileNotFoundException {
+        return new FileReader("src/test/resources/csv/" + fileName + ".csv");
     }
 
     @Test
-    public void readDataReadsEmptyCharacterAsNull() {
-        List<TestRow> rows = DataReader.readData(fileReader, TestRow.class);
+    public void readDataReadsEmptyCharacterAsNull() throws FileNotFoundException {
+        List<TestRow> rows = DataReader.readData(prepareFileReader("test"), TestRow.class);
         Assertions.assertThat(rows).isNotEmpty();
         Assertions.assertThat(rows.get(0).getSecond()).isNull();
     }
 
     @Test
-    public void readDataReadsBackslash() {
-        List<TestRow> rows = DataReader.readData(fileReader, TestRow.class);
+    public void readDataReadsBackslash() throws FileNotFoundException {
+        List<TestRow> rows = DataReader.readData(prepareFileReader("test"), TestRow.class);
         Assertions.assertThat(rows).isNotEmpty();
         Assertions.assertThat(rows.get(0).getFirst()).isEqualTo("test\\tvalue");
+    }
+
+    protected void hasEntryWith(Map<String, TestRow> actual, String id, String first, String second) {
+        Assertions.assertThat(actual).hasEntrySatisfying(id,
+                r -> {
+                    Assertions.assertThat(r.getId()).isEqualTo(id);
+                    Assertions.assertThat(r.getFirst()).isEqualTo(first);
+                    Assertions.assertThat(r.getSecond()).isEqualTo(second);
+                }
+        );
+    }
+
+    @Test
+    public void readDataMappedByIdReadsExpectedData() throws DuplicateRowIdException, FileNotFoundException {
+        Map<String, TestRow> actual = DataReader.readDataMappedById(prepareFileReader("test"), TestRow.class);
+        Assertions.assertThat(actual).hasSize(2);
+        hasEntryWith(actual, "id1", "test\\tvalue", null);
+        hasEntryWith(actual, "id2", "first2", "second2");
+    }
+
+    @Test
+    public void readDataMappedByIdThrowsErrorOnDuplicateKeys() {
+        Assertions.assertThatThrownBy(
+                () -> DataReader.readDataMappedById(prepareFileReader("duplicate-ids"), TestRow.class)
+        ).isInstanceOf(DuplicateRowIdException.class);
     }
 }
