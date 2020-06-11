@@ -4,6 +4,8 @@ import com.github.piotr_rusin.language_data.DataRow;
 import com.github.piotr_rusin.language_data.parameter.ParameterRow;
 import com.opencsv.bean.CsvBindByName;
 
+import java.util.Map;
+
 public class CodeRow extends DataRow {
 
     @CsvBindByName(column="Parameter_ID")
@@ -41,5 +43,9 @@ public class CodeRow extends DataRow {
 
     public ParameterRow getParameterData() {
         return parameterData;
+    }
+
+    public void populateParameterData(Map<String, ParameterRow> parameterRowMap) {
+        this.parameterData = parameterRowMap.get(this.parameterId);
     }
 }

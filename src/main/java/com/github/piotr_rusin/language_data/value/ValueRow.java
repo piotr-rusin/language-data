@@ -7,6 +7,8 @@ import com.github.piotr_rusin.language_data.language.LanguageRow;
 import com.github.piotr_rusin.language_data.parameter.ParameterRow;
 import com.opencsv.bean.CsvBindByName;
 
+import java.util.Map;
+
 public class ValueRow extends DataRow {
 
     @CsvBindByName(column="Language_ID")
@@ -74,5 +76,17 @@ public class ValueRow extends DataRow {
 
     public CodeRow getCodeData() {
         return codeData;
+    }
+
+    public void populateData(
+            Map<String, LanguageRow> languageRowMap,
+            Map<String, ParameterRow> parameterRowMap,
+            Map<String, ExampleRow> exampleRowMap,
+            Map<String, CodeRow> codeRowMap
+    ) {
+        this.languageData = languageRowMap.get(this.languageId);
+        this.parameterData = parameterRowMap.get(this.parameterId);
+        this.exampleData = exampleRowMap.get(this.exampleId);
+        this.codeData = codeRowMap.get(this.codeId);
     }
 }

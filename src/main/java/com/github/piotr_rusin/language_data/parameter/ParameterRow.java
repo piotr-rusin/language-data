@@ -4,6 +4,8 @@ import com.github.piotr_rusin.language_data.DataRow;
 import com.github.piotr_rusin.language_data.contributor.ContributorRow;
 import com.opencsv.bean.CsvBindByName;
 
+import java.util.Map;
+
 public class ParameterRow extends DataRow {
 
     @CsvBindByName(column="Contributor_ID")
@@ -41,5 +43,9 @@ public class ParameterRow extends DataRow {
 
     public ContributorRow getContributorData() {
         return contributorData;
+    }
+
+    public void populateContributorData(Map<String, ContributorRow> contributorRowMap) {
+        this.contributorData = contributorRowMap.get(this.contributorId);
     }
 }

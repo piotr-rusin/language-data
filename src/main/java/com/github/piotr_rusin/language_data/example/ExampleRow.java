@@ -4,6 +4,8 @@ import com.github.piotr_rusin.language_data.DataRow;
 import com.github.piotr_rusin.language_data.language.LanguageRow;
 import com.opencsv.bean.CsvBindByName;
 
+import java.util.Map;
+
 public class ExampleRow extends DataRow {
     @CsvBindByName(column="Language_ID")
     private String languageId;
@@ -52,5 +54,9 @@ public class ExampleRow extends DataRow {
 
     public LanguageRow getLanguageData() {
         return languageData;
+    }
+
+    public void populateLanguageData(Map<String, LanguageRow> languageRowMap) {
+        this.languageData = languageRowMap.get(languageId);
     }
 }
