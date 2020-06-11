@@ -1,12 +1,14 @@
 package com.github.piotr_rusin.language_data.value;
 
 import com.github.piotr_rusin.language_data.DataRow;
+import com.github.piotr_rusin.language_data.DuplicateRowIdException;
 import com.github.piotr_rusin.language_data.code.CodeRow;
 import com.github.piotr_rusin.language_data.example.ExampleRow;
 import com.github.piotr_rusin.language_data.language.LanguageRow;
 import com.github.piotr_rusin.language_data.parameter.ParameterRow;
 import com.opencsv.bean.CsvBindByName;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 public class ValueRow extends DataRow {
@@ -88,5 +90,9 @@ public class ValueRow extends DataRow {
         this.parameterData = parameterRowMap.get(this.parameterId);
         this.exampleData = exampleRowMap.get(this.exampleId);
         this.codeData = codeRowMap.get(this.codeId);
+    }
+
+    public static Map<String, ValueRow> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
+        return readAllFromFile(path, ValueRow.class);
     }
 }

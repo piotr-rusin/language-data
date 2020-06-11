@@ -1,9 +1,11 @@
 package com.github.piotr_rusin.language_data.parameter;
 
 import com.github.piotr_rusin.language_data.DataRow;
+import com.github.piotr_rusin.language_data.DuplicateRowIdException;
 import com.github.piotr_rusin.language_data.contributor.ContributorRow;
 import com.opencsv.bean.CsvBindByName;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 public class ParameterRow extends DataRow {
@@ -47,5 +49,9 @@ public class ParameterRow extends DataRow {
 
     public void populateContributorData(Map<String, ContributorRow> contributorRowMap) {
         this.contributorData = contributorRowMap.get(this.contributorId);
+    }
+
+    public static Map<String, ParameterRow> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
+        return readAllFromFile(path, ParameterRow.class);
     }
 }

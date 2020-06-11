@@ -1,7 +1,11 @@
 package com.github.piotr_rusin.language_data.language;
 
 import com.github.piotr_rusin.language_data.DataRow;
+import com.github.piotr_rusin.language_data.DuplicateRowIdException;
 import com.opencsv.bean.CsvBindByName;
+
+import java.io.FileNotFoundException;
+import java.util.Map;
 
 public class LanguageRow extends DataRow {
 
@@ -76,5 +80,9 @@ public class LanguageRow extends DataRow {
 
     public String getSamples200() {
         return samples200;
+    }
+
+    public static Map<String, LanguageRow> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
+        return readAllFromFile(path, LanguageRow.class);
     }
 }
