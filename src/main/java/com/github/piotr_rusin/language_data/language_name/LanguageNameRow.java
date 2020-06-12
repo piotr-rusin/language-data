@@ -2,7 +2,6 @@ package com.github.piotr_rusin.language_data.language_name;
 
 import com.github.piotr_rusin.language_data.DataRow;
 import com.github.piotr_rusin.language_data.DuplicateRowIdException;
-import com.github.piotr_rusin.language_data.language.LanguageRow;
 import com.opencsv.bean.CsvBindByName;
 
 import java.io.FileNotFoundException;
@@ -12,8 +11,6 @@ public class LanguageNameRow extends DataRow {
 
     @CsvBindByName(column="Language_ID")
     private String languageId;
-    private LanguageRow languageData;
-
     @CsvBindByName(column="Name")
     private String name;
     @CsvBindByName(column="Provider")
@@ -29,14 +26,6 @@ public class LanguageNameRow extends DataRow {
 
     public String getProvider() {
         return provider;
-    }
-
-    public LanguageRow getLanguageData() {
-        return languageData;
-    }
-
-    public void populateLanguageData(Map<String, LanguageRow> languageRowMap) {
-        this.languageData = languageRowMap.get(languageId);
     }
 
     public static Map<String, LanguageNameRow> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
