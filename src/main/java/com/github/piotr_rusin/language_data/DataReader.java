@@ -13,8 +13,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DataReader {
-    public static <T extends DataRow> List<T> readData(Reader reader, Class<T> rowClass) {
+public class DataReader<T extends DataRow> {
+
+    private Class<T> rowClass;
+
+    public DataReader(Class<T> rowClass) {
+        this.rowClass = rowClass;
+    }
+
+    public List<T> readData(Reader reader) {
         RFC4180Parser rfc4180Parser = new RFC4180ParserBuilder()
                 .withFieldAsNull(CSVReaderNullFieldIndicator.EMPTY_SEPARATORS)
                 .build();
@@ -30,9 +37,9 @@ public class DataReader {
         return csvToBean.parse();
     }
 
-    public static <T extends DataRow> Map<String, T> readDataMappedById(Reader reader, Class<T> rowClass) throws DuplicateRowIdException {
+    public Map<String, T> readDataMappedById(Reader reader) throws DuplicateRowIdException {
         Map<String, T> map = new HashMap<>();
-        for (T row : DataReader.readData(reader, rowClass)) {
+        for (T row : this.readData(reader)) {
             if (map.containsKey(row.getId())) {
                 throw new DuplicateRowIdException(String.format("Duplicate ID value detected for %s and %s", map.get(row.id), row));
             }

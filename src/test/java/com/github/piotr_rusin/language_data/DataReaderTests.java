@@ -13,20 +13,27 @@ import java.util.Map;
 
 public class DataReaderTests {
 
+    DataReader<TestRow> dataReader;
+
+    @BeforeEach
+    public void prepareDataReader() {
+        dataReader = new DataReader<>(TestRow.class);
+    }
+
     protected Reader prepareFileReader(String fileName) throws FileNotFoundException {
         return new FileReader("src/test/resources/csv/" + fileName + ".csv");
     }
 
     @Test
     public void readDataReadsEmptyCharacterAsNull() throws FileNotFoundException {
-        List<TestRow> rows = DataReader.readData(prepareFileReader("test"), TestRow.class);
+        List<TestRow> rows = dataReader.readData(prepareFileReader("test"));
         Assertions.assertThat(rows).isNotEmpty();
         Assertions.assertThat(rows.get(0).getSecond()).isNull();
     }
 
     @Test
     public void readDataReadsBackslash() throws FileNotFoundException {
-        List<TestRow> rows = DataReader.readData(prepareFileReader("test"), TestRow.class);
+        List<TestRow> rows = dataReader.readData(prepareFileReader("test"));
         Assertions.assertThat(rows).isNotEmpty();
         Assertions.assertThat(rows.get(0).getFirst()).isEqualTo("test\\tvalue");
     }
@@ -43,7 +50,7 @@ public class DataReaderTests {
 
     @Test
     public void readDataMappedByIdReadsExpectedData() throws DuplicateRowIdException, FileNotFoundException {
-        Map<String, TestRow> actual = DataReader.readDataMappedById(prepareFileReader("test"), TestRow.class);
+        Map<String, TestRow> actual = dataReader.readDataMappedById(prepareFileReader("test"));
         Assertions.assertThat(actual).hasSize(2);
         hasEntryWith(actual, "id1", "test\\tvalue", null);
         hasEntryWith(actual, "id2", "first2", "second2");
@@ -52,7 +59,7 @@ public class DataReaderTests {
     @Test
     public void readDataMappedByIdThrowsErrorOnDuplicateKeys() {
         Assertions.assertThatThrownBy(
-                () -> DataReader.readDataMappedById(prepareFileReader("duplicate-ids"), TestRow.class)
+                () -> dataReader.readDataMappedById(prepareFileReader("duplicate-ids"))
         ).isInstanceOf(DuplicateRowIdException.class);
     }
 }

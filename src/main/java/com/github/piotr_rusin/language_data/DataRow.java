@@ -15,6 +15,6 @@ public abstract class DataRow {
     }
 
     protected static <T extends DataRow> Map<String, T> readAllFromFile(String path, Class<T> rowClass) throws FileNotFoundException, DuplicateRowIdException {
-        return DataReader.readDataMappedById(new FileReader(path), rowClass);
+        return new DataReader<>(rowClass).readDataMappedById(new FileReader(path));
     }
 }
