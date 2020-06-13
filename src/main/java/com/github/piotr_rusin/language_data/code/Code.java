@@ -7,7 +7,7 @@ import com.opencsv.bean.CsvBindByName;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-public class CodeRow extends DataRow {
+public class Code extends DataRow {
 
     @CsvBindByName(column="Parameter_ID")
     private String parameterId;
@@ -40,7 +40,7 @@ public class CodeRow extends DataRow {
         return icon;
     }
 
-    public static Map<String, CodeRow> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
-        return readAllFromFile(path, CodeRow.class);
+    public static Map<String, Code> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
+        return readAllFromFile(path, Code.class);
     }
 }

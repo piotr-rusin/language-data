@@ -7,7 +7,7 @@ import com.opencsv.bean.CsvBindByName;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-public class ExampleRow extends DataRow {
+public class Example extends DataRow {
     @CsvBindByName(column="Language_ID")
     private String languageId;
     @CsvBindByName(column="Primary_Text")
@@ -51,7 +51,7 @@ public class ExampleRow extends DataRow {
         return comment;
     }
 
-    public static Map<String, ExampleRow> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
-        return readAllFromFile(path, ExampleRow.class);
+    public static Map<String, Example> readAllFromFile(String path) throws FileNotFoundException, DuplicateRowIdException {
+        return readAllFromFile(path, Example.class);
     }
 }
