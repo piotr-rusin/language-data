@@ -1,6 +1,5 @@
-package com.github.piotr_rusin.language_data.value;
+package com.github.piotr_rusin.language_data.row;
 
-import com.github.piotr_rusin.language_data.DataRow;
 import com.github.piotr_rusin.language_data.DuplicateRowIdException;
 import com.opencsv.bean.CsvBindByName;
 

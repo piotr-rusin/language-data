@@ -1,5 +1,6 @@
 package com.github.piotr_rusin.language_data;
 
+import com.github.piotr_rusin.language_data.row.DataRow;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.RFC4180Parser;
@@ -41,7 +42,7 @@ public class DataReader<T extends DataRow> {
         Map<String, T> map = new HashMap<>();
         for (T row : this.readData(reader)) {
             if (map.containsKey(row.getId())) {
-                throw new DuplicateRowIdException(String.format("Duplicate ID value detected for %s and %s", map.get(row.id), row));
+                throw new DuplicateRowIdException(String.format("Duplicate ID value detected for %s and %s", map.get(row.getId()), row));
             }
             map.put(row.getId(), row);
         }
