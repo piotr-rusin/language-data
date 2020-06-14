@@ -1,6 +1,6 @@
-package com.github.piotr_rusin.language_data;
+package com.github.rtwnt.language_data;
 
-import com.github.piotr_rusin.language_data.row.DataRow;
+import com.github.rtwnt.language_data.row.DataRow;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.RFC4180Parser;

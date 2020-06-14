@@ -1,7 +1,7 @@
-package com.github.piotr_rusin.language_data.row;
+package com.github.rtwnt.language_data.row;
 
-import com.github.piotr_rusin.language_data.DataReader;
-import com.github.piotr_rusin.language_data.DuplicateRowIdException;
+import com.github.rtwnt.language_data.DataReader;
+import com.github.rtwnt.language_data.DuplicateRowIdException;
 import com.opencsv.bean.CsvBindByName;
 
 import java.io.FileNotFoundException;

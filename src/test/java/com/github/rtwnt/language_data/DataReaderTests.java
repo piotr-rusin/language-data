@@ -1,4 +1,4 @@
-package com.github.piotr_rusin.language_data;
+package com.github.rtwnt.language_data;
 
 
 import org.assertj.core.api.Assertions;

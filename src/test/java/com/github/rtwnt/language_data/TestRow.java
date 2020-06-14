@@ -1,6 +1,6 @@
-package com.github.piotr_rusin.language_data;
+package com.github.rtwnt.language_data;
 
-import com.github.piotr_rusin.language_data.row.DataRow;
+import com.github.rtwnt.language_data.row.DataRow;
 import com.opencsv.bean.CsvBindByName;
 
 public class TestRow extends DataRow {
