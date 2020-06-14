@@ -3,7 +3,7 @@ plugins {
     id 'maven'
 }
 
-group 'com.github.piotr-rusin'
+group 'com.github.rtwnt'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 11
