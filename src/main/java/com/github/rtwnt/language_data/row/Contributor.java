@@ -10,6 +10,11 @@ public class Contributor extends DataRow {
     @CsvBindByName(column="Name")
     private String name;
 
+    public Contributor(Contributor other) {
+        super(other);
+        this.name = other.name;
+    }
+
     public String getName() {
         return name;
     }

@@ -23,6 +23,17 @@ public class Value extends DataRow {
     @CsvBindByName(column="Source")
     private String source;
 
+    public Value(Value other) {
+        super(other);
+        this.languageId = other.languageId;
+        this.parameterId = other.parameterId;
+        this.exampleId = other.exampleId;
+        this.codeId = other.codeId;
+        this.value = other.value;
+        this.comment = other.comment;
+        this.source = other.source;
+    }
+
     public String getLanguageId() {
         return languageId;
     }

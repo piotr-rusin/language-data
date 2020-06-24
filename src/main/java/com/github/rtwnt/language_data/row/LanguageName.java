@@ -15,6 +15,13 @@ public class LanguageName extends DataRow {
     @CsvBindByName(column="Provider")
     private String provider;
 
+    public LanguageName(LanguageName other) {
+        super(other);
+        this.languageId = other.languageId;
+        this.name = other.name;
+        this.provider = other.provider;
+    }
+
     public String getLanguageId() {
         return languageId;
     }

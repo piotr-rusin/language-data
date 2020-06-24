@@ -19,6 +19,15 @@ public class Code extends DataRow {
     @CsvBindByName(column="icon")
     private String icon;
 
+    public Code(Code other) {
+        super(other);
+        this.parameterId = other.parameterId;
+        this.name = other.name;
+        this.description = other.description;
+        this.number = other.number;
+        this.icon = other.icon;
+    }
+
     public String getParameterId() {
         return parameterId;
     }

@@ -12,6 +12,10 @@ public abstract class DataRow {
     @CsvBindByName(column="ID")
     protected String id;
 
+    public DataRow(DataRow other) {
+        this.id = other.id;
+    }
+
     public String getId() {
         return id;
     }

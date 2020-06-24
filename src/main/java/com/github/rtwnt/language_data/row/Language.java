@@ -33,6 +33,22 @@ public class Language extends DataRow {
     @CsvBindByName(column="Samples_200")
     private String samples200;
 
+    public Language(Language other) {
+        super(other);
+        this.name = other.name;
+        this.macroarea = other.macroarea;
+        this.latitude = other.latitude;
+        this.longitude = other.longitude;
+        this.glottocode = other.glottocode;
+        this.iso639P3code = other.iso639P3code;
+        this.family = other.family;
+        this.subfamily = other.subfamily;
+        this.genus = other.genus;
+        this.isoCodes = other.isoCodes;
+        this.samples100 = other.samples100;
+        this.samples200 = other.samples200;
+    }
+
     public String getName() {
         return name;
     }
