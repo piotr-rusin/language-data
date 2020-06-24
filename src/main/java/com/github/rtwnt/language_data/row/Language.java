@@ -33,6 +33,8 @@ public class Language extends DataRow {
     @CsvBindByName(column="Samples_200")
     private String samples200;
 
+    public Language(){}
+
     public Language(Language other) {
         super(other);
         this.name = other.name;

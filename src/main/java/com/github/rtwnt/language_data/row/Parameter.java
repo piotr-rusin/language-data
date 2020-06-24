@@ -19,6 +19,8 @@ public class Parameter extends DataRow {
     @CsvBindByName(column="Area")
     private String area;
 
+    public Parameter(){}
+
     public Parameter(Parameter other) {
         super(other);
         this.contributorId = other.contributorId;

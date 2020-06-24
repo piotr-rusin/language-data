@@ -23,6 +23,8 @@ public class Value extends DataRow {
     @CsvBindByName(column="Source")
     private String source;
 
+    public Value(){}
+
     public Value(Value other) {
         super(other);
         this.languageId = other.languageId;

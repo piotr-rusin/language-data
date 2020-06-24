@@ -22,6 +22,8 @@ public class Example extends DataRow {
     @CsvBindByName(column="Comment")
     private String comment;
 
+    public Example(){}
+
     public Example(Example other) {
         super(other);
         this.languageId = other.languageId;
